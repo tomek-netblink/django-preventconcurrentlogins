@@ -34,7 +34,7 @@ class PreventConcurrentLoginsMiddleware(deprecation.MiddlewareMixin if DJANGO_VE
                 if session_key_in_visitor_db != key_from_cookie:
                     # Delete the Session object from database and cache
                     engine.SessionStore(session_key_in_visitor_db).delete()
-                    messages.success(request, "You had been logged out as you are logged in another device.")
+                    print(key_from_cookie, "You had been logged out as you are logged in another device.")
                     request.user.visitor.session_key = key_from_cookie
                     request.user.visitor.save()
             else:
